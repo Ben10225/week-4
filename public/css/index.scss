@@ -1,0 +1,53 @@
+@mixin gridCenter () {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header{
+  nav{
+    @include gridCenter();
+    height: 120px;
+    font-size: 35px;
+    color: #fff;
+    background-color: rgb(40, 46, 77);
+  }
+}
+
+section{
+  @include gridCenter();
+  text-align: center;
+  h3{
+    margin-top: 40px;
+    margin-bottom: 10px;
+    font-size: 25px;
+    letter-spacing: 5px;
+    font-weight: 400;
+  }
+  label{
+    font-size: 22px;
+    font-weight: 300;
+    margin-right: 10px;
+  }
+  input{
+    font-size: 22px;
+    margin: 7px 0;
+    padding: 2px 5px;
+    outline-color: #333;
+  }
+  button{
+    padding: 5px 10px;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+  hr{
+    width: 600px;
+    margin-top: 50px;
+  }
+}

@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header nav {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: 120px;
+  font-size: 35px;
+  color: #fff;
+  background-color: rgb(40, 46, 77);
+}
+
+section {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+section h3 {
+  margin-top: 40px;
+  font-size: 26px;
+  font-weight: 200;
+}
+section a {
+  font-size: 20px;
+  margin-top: 20px;
+}/*# sourceMappingURL=member.css.map */

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>登入頁面</title>
+
+  <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <nav>歡迎光臨，請輸入帳號密碼</nav>
+    </header>
+    <section>
+      <h3>登入系統</h3>
+      <form action="/signin" method="POST">
+        <label for="account">帳號</label>
+        <input type="text" name="account" id="account" autocomplete="off"><br>
+        <label for="password">密碼</label>
+        <input type="password" name="password" id="password" autocomplete="off"><br>
+        <button>登入</button>
+      </form>
+      <hr>
+      <h3>計算正整數的平方
+      </h3>
+      <form action="/square" method="POST">
+        <label for="count">正整數</label>
+        <input class="countInput" type="text" name="count" id="count" autocomplete="off"><br>
+        <button class="countBtn">計算</button>
+      </form>
+    </section>
+  </div>
+
+  <script src="/js/square.js"></script>
+</body>
+</html>

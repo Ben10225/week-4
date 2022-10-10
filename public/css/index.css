@@ -1,0 +1,49 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header nav {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: 120px;
+  font-size: 35px;
+  color: #fff;
+  background-color: rgb(40, 46, 77);
+}
+
+section {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+section h3 {
+  margin-top: 40px;
+  margin-bottom: 10px;
+  font-size: 25px;
+  letter-spacing: 5px;
+  font-weight: 400;
+}
+section label {
+  font-size: 22px;
+  font-weight: 300;
+  margin-right: 10px;
+}
+section input {
+  font-size: 22px;
+  margin: 7px 0;
+  padding: 2px 5px;
+  outline-color: #333;
+}
+section button {
+  padding: 5px 10px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+section hr {
+  width: 600px;
+  margin-top: 50px;
+}/*# sourceMappingURL=index.css.map */

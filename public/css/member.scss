@@ -1,0 +1,35 @@
+@mixin gridCenter () {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header{
+  nav{
+    @include gridCenter();
+    height: 120px;
+    font-size: 35px;
+    color: #fff;
+    background-color: rgb(40, 46, 77);
+  }
+}
+
+section{
+  @include gridCenter();
+  text-align: center;
+  h3{
+    margin-top: 40px;
+    font-size: 26px;
+    font-weight: 200;
+  }
+  a{
+    font-size: 20px;
+    margin-top: 20px;
+  }
+}
