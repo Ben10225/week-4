@@ -37,16 +37,16 @@ def signout():
   return redirect("/")
 
 @app.route("/square", methods=["post"])
-def sq():
+def square():
   numinput = request.form["count"]
   if numinput == "0": 
     return redirect("/")
   if numinput == "" or numinput.isdigit() == False:
     return redirect("/")
-  return redirect(url_for("square", id=numinput))
+  return redirect(url_for("sqDynamic", id=numinput))
 
 @app.route("/square/<id>")
-def square(id):
+def sqDynamic(id):
   if id.isdigit():
     num = int(id)
     result = num**2
