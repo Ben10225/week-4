@@ -3,6 +3,7 @@ from flask import Flask, render_template, redirect, request, session, url_for
 import re
 
 app = Flask(__name__, static_folder="public", static_url_path="/")
+app.debug = True
 
 app.secret_key="anytxt"
 
@@ -48,5 +49,31 @@ def sqDynamic(id):
     result = num**2
     print(result)
     return render_template("square.html", result=result)
+
+# @app.route("/square", methods=["post"])
+# def square():
+#   numinput = request.form["count"]
+#   if numinput == "0": 
+#     return redirect("/")
+#   if numinput == "" or numinput.isdigit() == False:
+#     return redirect("/")
+#   return redirect(url_for("sqDynamic", id=numinput))
+
+# @app.route("/square/<id>")
+# def sqDynamic(id):
+#   if id.isdigit():
+#     num = int(id)
+#     result = num**2
+#     return render_template("square.html", result=result)
+
+
+# fetch
+# @app.route("/square/<id>", methods=["POST"])
+# def sqDynamic(id):
+#   jsonData = request.get_json()
+#   if jsonData["id"]:
+#     print(jsonData["id"])
+#     print("有接到 fetch")
+#     return redirect("/")
 
 app.run(port=3000)
