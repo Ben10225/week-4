@@ -1,5 +1,4 @@
 
-from urllib import response
 from flask import Flask, render_template, redirect, session, request, make_response, Response
 import re
 
@@ -15,7 +14,7 @@ def index():
 @app.route("/member")
 def member():
   # if session["account"] == False:
-  #   return redirect("/")
+  #   # return redirect("/")
 
   # cookie
   account = request.cookies.get("account")
@@ -30,6 +29,7 @@ def sign():
   password = request.form["password"]
   if account == "test" and password == "test":
     # session["account"] = account
+    # return redirect("/member")
 
     # cookie
     resp = make_response(redirect("/member"))
@@ -49,11 +49,13 @@ def fail():
 @app.route("/signout")
 def signout():
   # session['account'] = False
+  # return redirect("/")
 
   # cookie
   resp = make_response(redirect("/"))
   resp.set_cookie('account', '', 0)
   return resp
+
 
 @app.route("/square/<id>")
 def sqDynamic(id):
@@ -66,31 +68,5 @@ def sqDynamic(id):
     print(result)
     return render_template("square.html", result=result)
 
-
-# @app.route("/square", methods=["post"])
-# def square():
-#   numinput = request.form["count"]
-#   if numinput == "0": 
-#     return redirect("/")
-#   if numinput == "" or numinput.isdigit() == False:
-#     return redirect("/")
-#   return redirect(url_for("sqDynamic", id=numinput))
-
-# @app.route("/square/<id>")
-# def sqDynamic(id):
-#   if id.isdigit():
-#     num = int(id)
-#     result = num**2
-#     return render_template("square.html", result=result)
-
-
-# fetch
-# @app.route("/square/<id>", methods=["POST"])
-# def sqDynamic(id):
-#   jsonData = request.get_json()
-#   if jsonData["id"]:
-#     print(jsonData["id"])
-#     print("有接到 fetch")
-#     return redirect("/")
 
 app.run(port=3000)
