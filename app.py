@@ -8,23 +8,10 @@ app.debug = True
 
 app.secret_key="anytxt"
 
-def generate_key():
-  return Fernet.generate_key()
-
-def encrypt(key, pwd):
-  cipher_suite = Fernet(key)
-  bpwd = bytes(pwd, 'utf-8')
-  ciphered_text = cipher_suite.encrypt(bpwd)
-  return ciphered_text
-
-def decrypt(key, enc_pwd):
-  cipher_suite = Fernet(key)
-  uncipher_text = (cipher_suite.decrypt(enc_pwd))
-  return bytes(uncipher_text).decode("utf-8")
-
-key = generate_key()
-encryptStr = encrypt(key, "cryptographyPWD")
-encryptVal = encrypt(key, "flask")
+key = Fernet.generate_key()
+f = Fernet(key)
+pwdName = f.encrypt(b"cryptographyPWD")
+pwdVal = f.encrypt(b"flask")
 
 @app.route("/")
 def index():
@@ -41,12 +28,17 @@ def member():
   #   return redirect("/")
   # return render_template("member.html")
 
+
   # cryptography
-  account = request.cookies.get(bytes(encryptStr).decode("utf-8")[:-2])
+  account = request.cookies.get(bytes(pwdName).decode("utf-8")[:-2])
   if not account:
     return redirect("/")
-  if account[2:] == bytes(encryptVal).decode("utf-8"):
+
+  remakeVal = bytes(f.decrypt(str.encode(account[2:]))).decode("utf-8")
+  # print(str.encode(remakeVal) == pwdVal)
+  if remakeVal == "flask" :
     return render_template("member.html")
+
 
 @app.route("/signin", methods=["post"])
 def sign():
@@ -63,8 +55,7 @@ def sign():
 
     # cryptography
     resp = make_response(redirect("/member"))
-    resp.set_cookie(encryptStr, encryptVal, 7200)
-    print(bytes(encryptStr).decode("utf-8"))
+    resp.set_cookie(pwdName, pwdVal, 7200)
     return resp
 
   else:
@@ -89,7 +80,7 @@ def signout():
 
   # cryptography
   resp = make_response(redirect("/"))
-  resp.set_cookie(encryptStr, '', 0)
+  resp.set_cookie(pwdName, '', 0)
   return resp
 
 
@@ -101,9 +92,29 @@ def sqDynamic(id):
   if id.isdigit():
     num = int(id)
     result = num**2
-    print(result)
     return render_template("square.html", result=result)
 
-
-
 app.run(port=3000)
+
+
+# def generate_key():
+#     return Fernet.generate_key()
+
+
+# def encrypt(key, pwd):
+#     cipher_suite = Fernet(key)
+#     bpwd = bytes(pwd, 'utf-8')
+#     ciphered_text = cipher_suite.encrypt(bpwd)
+#     return ciphered_text
+
+
+# def decrypt(key, enc_pwd):
+#     cipher_suite = Fernet(key)
+#     uncipher_text = (cipher_suite.decrypt(enc_pwd))
+#     return bytes(uncipher_text).decode("utf-8")
+
+# key = generate_key()
+# print(bytes(key).decode("utf-8"))
+# encryptstr = encrypt(key, "abc123")
+# print(bytes(encryptstr).decode("utf-8"))
+# print(decrypt(key, encryptstr))
